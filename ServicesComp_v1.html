@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>TPG Services ... Six offers. Three formats.</title>
+<style>
+  :root{
+    /* v7: blue system in the v3 slots; --blue slot now carries accent purple */
+    --purple:#0088CC; --purple-dark:#006BA8; --purple-deep:#053E63; --purple-ink:#032A45;
+    --purple-light:#F0F7FC; --orange:#E8651F; --orange-dark:#C9530E; --blue:#5B2D8E;
+    --body:#3A4E5F; --muted:#5A6B7C; --line:#DFE8EF; --white:#FFFFFF;
+    --serif:'Newsreader',Georgia,serif; --sans:'Figtree',Arial,sans-serif;
+    --max:1200px; --pad-x:clamp(24px,5vw,64px); --pad-y:clamp(72px,9vw,128px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--body);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad-x);padding-right:var(--pad-x)}
+  section{padding-top:var(--pad-y);padding-bottom:var(--pad-y)}
+  h1,h2,h3{font-family:var(--serif);font-weight:normal;line-height:1.12}
+  .kicker{font-family:var(--sans);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px;font-weight:bold}
+  .commit .kicker{color:#BFE6F7}
+  .btn{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-family:var(--sans);font-weight:bold;font-size:17px;padding:18px 40px;border-radius:4px;transition:background .2s, transform .2s}
+  .btn:hover{background:var(--orange-dark);transform:translateY(-2px)}
+  .btn.big{font-size:19px;padding:21px 52px}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,62,99,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.10)}
+  .nav-in{max-width:var(--max);margin:0 auto;padding:0 var(--pad-x);height:76px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo img{height:34px;display:block}
+  .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;letter-spacing:.02em}
+  .nav-links a:hover{color:#fff}
+  .nav-links .btn{font-size:15px;padding:12px 26px}
+  @media(max-width:820px){.nav-links li:not(.keep){display:none}}
+
+  /* HERO */
+  .hero{min-height:92vh;display:flex;align-items:center;background:
+    radial-gradient(1100px 520px at 82% -10%, rgba(232,101,31,.22), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(5,62,99,.50), transparent 60%),
+    linear-gradient(168deg, var(--purple) 0%, var(--purple-dark) 100%);
+    color:#fff;padding-top:140px}
+  .hero h1{font-size:clamp(46px,7.2vw,96px);letter-spacing:-.01em;max-width:1050px}
+  .hero h1 .accent{color:#BFE6F7;font-style:italic}
+  .hero p{font-family:var(--sans);font-size:clamp(18px,2vw,23px);color:rgba(255,255,255,.82);max-width:680px;margin:34px 0 46px;line-height:1.65}
+  .hero .rule{width:96px;height:5px;background:var(--orange);margin-bottom:42px}
+
+  /* QUESTION */
+  .question{background:var(--white);text-align:center}
+  .question blockquote{font-family:var(--serif);font-size:clamp(28px,3.6vw,46px);line-height:1.3;color:var(--purple-ink);max-width:920px;margin:0 auto}
+  .question .setup{font-size:clamp(16px,1.7vw,19px);color:var(--muted);max-width:760px;margin:0 auto 40px}
+  .problem h2 em{font-style:italic;color:var(--blue)}
+  .headcount .integrator{font-family:var(--serif);font-style:italic;font-size:17.5px;color:var(--purple-ink);border-left:4px solid var(--blue);padding-left:22px;margin-top:32px;max-width:520px;line-height:1.6}
+  .question blockquote::before{content:'\201C';color:var(--orange);font-size:1.4em;line-height:0;vertical-align:-.35em;margin-right:6px}
+  .question .verdict{font-size:clamp(17px,1.8vw,21px);color:var(--muted);max-width:640px;margin:36px auto 0}
+  .question .verdict strong{color:var(--orange)}
+
+  /* PROBLEM */
+  .problem{background:var(--purple-light)}
+  .problem h2{font-size:clamp(32px,4.4vw,56px);color:var(--purple-ink);max-width:820px;margin-bottom:64px}
+  .prob-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
+  .prob-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:34px 32px;display:flex;gap:22px;align-items:flex-start}
+  .prob-card .num{font-family:var(--serif);font-size:44px;color:var(--blue);line-height:1;min-width:44px}
+  .prob-card p{font-size:17px;color:var(--body)}
+  .prob-card p b{color:var(--purple-ink)}
+
+  /* FORMATS */
+  .formats h2{font-size:clamp(32px,4.4vw,56px);color:var(--purple-ink)}
+  .formats .sub{font-size:19px;color:var(--muted);max-width:720px;margin:20px 0 64px}
+  .fmt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+  .fmt-card{border:1px solid var(--line);border-top:6px solid var(--purple);border-radius:6px;padding:40px 34px;display:flex;flex-direction:column;transition:box-shadow .2s, transform .2s;background:#fff}
+  .fmt-card:hover{box-shadow:0 18px 44px rgba(3,62,99,.14);transform:translateY(-4px)}
+  .fmt-card.c2{border-top-color:var(--orange)}
+  .fmt-card.c3{border-top-color:var(--blue)}
+  .fmt-card h3{font-size:27px;color:var(--purple-ink);margin-bottom:18px}
+  .fmt-card .desc{font-size:16.5px;color:var(--body);flex-grow:1}
+  .fmt-card .offers{margin:26px 0;padding-top:22px;border-top:1px solid var(--line);font-size:15px;color:var(--muted);line-height:2}
+  .fmt-card .offers b{color:var(--purple)}
+  .fmt-card a{color:var(--orange);font-weight:bold;text-decoration:none;font-size:16px}
+  .fmt-card a:hover{color:var(--orange-dark)}
+
+  /* STE */
+  .ste{background:linear-gradient(160deg,var(--purple),var(--purple-dark));color:#fff}
+  .ste h2{font-size:clamp(30px,3.8vw,48px);margin-bottom:70px;max-width:760px}
+  .ste-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:56px}
+  .ste-col .letter{font-family:var(--serif);font-size:96px;color:#FFFFFF;line-height:1;display:block}
+  .ste-col h3{font-size:24px;margin:18px 0 14px}
+  .ste-col p{color:rgba(255,255,255,.78);font-size:16.5px}
+
+  /* HEADCOUNT */
+  .headcount .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  @media(max-width:900px){.headcount .wrap{grid-template-columns:1fr}}
+  .headcount h2{font-size:clamp(32px,4.2vw,54px);color:var(--purple-ink);margin-bottom:28px}
+  .headcount p{font-size:18px;max-width:520px}
+  .headcount .cta-line{margin-top:36px}
+  .vs-card{border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 24px 60px rgba(3,62,99,.10)}
+  .vs-head{display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--purple);color:#fff;font-family:var(--sans);font-weight:bold;font-size:15px}
+  .vs-head div{padding:18px 20px}
+  .vs-head .sprint{color:#FFFFFF}
+  .vs-row{display:grid;grid-template-columns:1.2fr 1fr 1fr;font-size:15px;border-top:1px solid var(--line)}
+  .vs-row div{padding:16px 20px}
+  .vs-row .label{color:var(--muted)}
+  .vs-row .win{color:var(--purple-ink);font-weight:bold}
+
+  /* PROOF */
+  .proof{background:var(--purple-light)}
+  .proof h2{font-size:clamp(30px,3.8vw,46px);color:var(--purple-ink);margin-bottom:56px}
+  .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:64px}
+  .test-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:34px}
+  .test-card .q{font-family:var(--serif);font-size:19px;font-style:italic;color:var(--blue);margin-bottom:20px}
+  .test-card .who{font-size:14px;color:var(--muted);letter-spacing:.04em}
+  .trust{font-size:16px;color:var(--muted);text-align:center;max-width:760px;margin:0 auto 64px}
+  .trust b{color:var(--purple-ink)}
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .metric{background:#fff;padding:36px 28px;text-align:center}
+  .metric .big{font-family:var(--serif);font-size:30px;color:var(--purple);display:block;line-height:1.25;margin-bottom:8px}
+  .metric .small{font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  /* COMMIT */
+  .commit{background:
+    radial-gradient(900px 480px at 15% 120%, rgba(232,101,31,.25), transparent 60%),
+    linear-gradient(165deg,var(--purple-dark),var(--purple-deep));color:#fff;text-align:center}
+  .commit h2{font-size:clamp(34px,4.6vw,58px);max-width:900px;margin:0 auto 34px}
+  .commit p{font-size:clamp(17px,1.9vw,21px);color:rgba(255,255,255,.85);max-width:780px;margin:0 auto}
+  .commit p.second{margin-top:22px;font-family:var(--serif);font-style:italic;color:#fff}
+  .commit .btn{margin-top:48px}
+
+  /* FAQ */
+  .faq{background:#fff}
+  .faq h2{font-family:var(--sans);font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:34px;font-weight:bold}
+  .faq details{border-top:1px solid var(--line)}
+  .faq details:last-of-type{border-bottom:1px solid var(--line)}
+  .faq summary{font-family:var(--serif);font-size:21px;color:var(--purple-ink);padding:26px 44px 26px 4px;cursor:pointer;list-style:none;position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--blue);font-size:30px;font-family:var(--sans)}
+  .faq details[open] summary::after{content:'\2013'}
+  .faq .a{padding:0 4px 30px;font-size:16.5px;color:var(--body);max-width:860px}
+
+  /* FOOTER */
+  footer{background:var(--purple-deep);color:rgba(255,255,255,.7);padding:70px 0 46px}
+  .foot-top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;align-items:flex-start;margin-bottom:52px}
+  .foot-top img{height:32px}
+  .foot-links{display:flex;gap:32px;list-style:none}
+  .foot-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:15px}
+  .foot-links a:hover{color:#fff}
+  .foot-tag{font-family:var(--serif);font-style:italic;font-size:19px;color:#fff;border-top:1px solid rgba(255,255,255,.12);padding-top:36px}
+  .foot-legal{font-size:13px;margin-top:18px;color:rgba(255,255,255,.4)}
+</style>
+
+<style>
+  .page-hero{min-height:54vh;display:flex;align-items:center;background:
+    radial-gradient(1100px 520px at 82% -10%, rgba(232,101,31,.20), transparent 60%),
+    linear-gradient(168deg, var(--purple) 0%, var(--purple-dark) 100%);color:#fff;padding-top:150px;padding-bottom:80px}
+  .page-hero .kicker{color:#BFE6F7}
+  .page-hero h1{font-family:var(--serif);font-size:clamp(38px,5.2vw,66px);color:#fff;max-width:940px;line-height:1.12}
+  .page-hero p{font-size:clamp(17px,1.9vw,21px);color:rgba(255,255,255,.86);max-width:660px;margin-top:26px}
+  .group h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,46px);color:var(--purple-ink);margin-bottom:14px}
+  .group .gdesc{max-width:780px;margin-bottom:48px;font-size:17.5px}
+  .offer{background:#fff;border:1px solid var(--line);border-radius:8px;padding:clamp(28px,4vw,46px);margin-bottom:30px}
+  .offer h3{font-family:var(--serif);font-size:27px;color:var(--purple-ink);margin-bottom:8px}
+  .offer .tagline{font-family:var(--serif);font-style:italic;color:var(--blue);font-size:18px;margin-bottom:22px;line-height:1.5}
+  .offer p{margin-bottom:16px;font-size:16.5px}
+  .offer h4{font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-ink);margin:26px 0 12px;font-weight:bold}
+  .offer ol{padding-left:22px;font-size:15.5px}
+  .offer ol li{margin-bottom:9px}
+  .offer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:36px}
+  .offer .cta-row{margin-top:28px}
+  .offer .pricing{background:var(--purple-light);border-radius:6px;padding:20px 26px;font-size:15.5px;margin-top:24px}
+  .offer .pricing b{color:var(--purple-ink)}
+  .lane-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin:40px 0 16px}
+  .lane{background:#fff;border:1px solid var(--line);border-top:6px solid var(--purple);border-radius:8px;padding:36px}
+  .lane.custom{border-top-color:var(--orange)}
+  .lane h4{font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-ink);margin-bottom:14px;font-weight:bold}
+  .lane p{font-size:15.5px}
+  .ptable-wrap{overflow-x:auto}
+  .ptable{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:14.5px;min-width:760px}
+  .ptable th{background:var(--purple);color:#fff;padding:15px 16px;text-align:left;font-weight:bold}
+  .ptable td{border-top:1px solid var(--line);padding:15px 16px;vertical-align:top}
+  .ptable td:first-child{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+  .table-note{font-size:14.5px;color:var(--muted);margin-top:14px}
+  .price-box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:52px;text-align:center;max-width:680px;margin:0 auto;box-shadow:0 18px 44px rgba(3,62,99,.08)}
+  .price-box .amt{font-family:var(--serif);font-size:52px;color:var(--purple-ink);display:block;margin-bottom:14px}
+  .price-box p{max-width:480px;margin:0 auto}
+  .steps{counter-reset:step;list-style:none;max-width:820px}
+  .steps li{counter-increment:step;position:relative;padding:0 0 30px 74px;font-size:16.5px}
+  .steps li::before{content:counter(step);position:absolute;left:0;top:-4px;width:48px;height:48px;border-radius:50%;background:var(--purple);color:#fff;font-family:var(--serif);font-size:22px;display:flex;align-items:center;justify-content:center}
+  .start-box{background:linear-gradient(165deg,var(--purple-dark),var(--purple-deep));color:#fff;border-radius:10px;padding:clamp(36px,5vw,60px);text-align:center}
+  .start-box h2{font-family:var(--serif);color:#fff;font-size:clamp(26px,3.2vw,38px);margin-bottom:14px}
+  .start-box p{color:rgba(255,255,255,.85);max-width:640px;margin:0 auto 34px}
+  .philosophy li{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);color:var(--purple-ink);padding:24px 0;border-bottom:1px solid var(--line);list-style:none}
+  .philosophy li span{color:var(--blue)}
+  .bio p{max-width:820px;font-size:17px;margin-bottom:22px}
+  .bio .pull{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--purple-ink);border-left:4px solid var(--blue);padding-left:24px;margin:30px 0;max-width:760px}
+  .ebi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+  .ebi{background:#fff;border:1px solid var(--line);border-radius:8px;padding:38px}
+  .ebi .step-name{font-family:var(--serif);font-size:24px;color:var(--purple-ink);margin-bottom:14px;display:block}
+  .ebi p{font-size:15.5px}
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+  .who{background:#fff;border:1px solid var(--line);border-left:5px solid var(--purple);border-radius:6px;padding:30px;font-size:16.5px;color:var(--body)}
+  .band{background:var(--purple-light)}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="index.html"><img src="data:image/svg+xml;utf8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20version%3D%221.1%22%20viewBox%3D%220%200%20209.71%2029.96%22%3E%0A%20%20%3C%21--%20Generator%3A%20Adobe%20Illustrator%2030.2.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%202.1.1%20Build%201%29%20%20--%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20.st0%20%7B%0A%20%20%20%20%20%20%20%20stroke%3A%20%23FFFFFF%3B%0A%20%20%20%20%20%20%20%20stroke-width%3A%201.8px%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20.st0%2C%20.st1%20%7B%0A%20%20%20%20%20%20%20%20fill%3A%20none%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20.st1%20%7B%0A%20%20%20%20%20%20%20%20stroke%3A%20%23FFFFFF%3B%0A%20%20%20%20%20%20%20%20stroke-width%3A%201.24px%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20.st2%20%7B%0A%20%20%20%20%20%20%20%20fill%3A%20%23FFFFFF%3B%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%3C/style%3E%0A%20%20%3C/defs%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M3.23%2C29.63V6.99H.35v-1.72h7.49v1.72h-2.85v22.64h-1.75Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M16.86%2C29.63V13.12h-4.49v16.51h-1.79V13.12h-.91l-.66-1.79h1.57v-6.06h1.79v6.06h4.49v-6.06h1.79v24.36h-1.79Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M22.68%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M39.7%2C4.86l1.61.03c5.41.04%2C9.64%2C4.01%2C9.64%2C9.02s-3.8%2C8.59-9.46%2C9.16v6.19h-1.79V4.86ZM49.19%2C13.88c0-4.01-3.07-6.97-7.71-7.44v14.95c4.46-.3%2C7.71-3.46%2C7.71-7.51Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M54.52%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M66.56%2C29.63V6.99h-2.89v-1.72h7.49v1.72h-2.85v22.64h-1.75Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M73.95%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M93.44%2C29.45l-8.7-7.08v6.9h-1.79V4.76h1.31c5.52%2C0%2C9.86%2C3.94%2C9.86%2C8.92%2C0%2C3.97-2.52%2C7.14-6.79%2C8.55l8.96%2C7.21h-2.85ZM92.37%2C13.79c0-4.04-3.07-7-7.63-7.44v14.71c4.57-.44%2C7.63-3.37%2C7.63-7.27Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M98.26%2C27.43h2.12c2.63%2C0%2C4.2-1.35%2C4.2-3.62%2C0-.62-.18-1.31-.62-2.23l-3.8-8.25c-1.1-2.34-1.2-2.74-1.2-3.8%2C0-2.92%2C1.94-4.64%2C5.26-4.64h1.28v1.75h-1.42c-2.04%2C0-3.32%2C1.06-3.32%2C2.74%2C0%2C.55.26%2C1.46.55%2C2.15l4.2%2C8.87c.66%2C1.32.91%2C2.3.91%2C3.36%2C0%2C3.32-2.45%2C5.48-6.21%2C5.48h-1.94v-1.83Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M114.34%2C6.8c-1.61%2C0-3.13.63-4.28%2C1.78-1.15%2C1.15-1.78%2C2.68-1.78%2C4.31s.63%2C3.14%2C1.77%2C4.29c1.15%2C1.15%2C2.68%2C1.78%2C4.32%2C1.78s3.16-.63%2C4.31-1.79c1.15-1.14%2C1.78-2.67%2C1.78-4.28s-.63-3.15-1.78-4.3c-1.15-1.15-2.69-1.79-4.33-1.79ZM119.79%2C18.32c-1.45%2C1.45-3.38%2C2.25-5.43%2C2.25s-3.99-.8-5.45-2.26c-1.46-1.46-2.26-3.38-2.26-5.42s.8-3.98%2C2.25-5.43c1.46-1.46%2C3.39-2.26%2C5.43-2.26s4%2C.8%2C5.46%2C2.26c1.45%2C1.45%2C2.25%2C3.38%2C2.25%2C5.43s-.8%2C3.98-2.25%2C5.43Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M131.21%2C29.41V10.86l-5.11-3.1v21.66h-1.83V4.65l6.94%2C4.17v-3.76h1.72v24.36h-1.72Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M141.32%2C17.39c0-6.68%2C5.22-11.91%2C12.09-12.13v1.75c-6.1.47-10.26%2C4.67-10.26%2C10.41%2C0%2C5.04%2C3.32%2C9.02%2C8.51%2C10.15V11.37h1.75v18.26c-7.53-.8-12.09-5.44-12.09-12.24Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M166.41%2C29.18l-8.3-6.71v6.8h-1.79V4.86h1.31c5.52%2C0%2C9.86%2C3.94%2C9.86%2C8.92%2C0%2C3.97-2.52%2C7.14-6.79%2C8.55l8.56%2C6.85h-2.85ZM165.75%2C13.88c0-4.04-3.07-7-7.63-7.44v14.71c4.56-.44%2C7.63-3.37%2C7.63-7.27Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M195.58%2C25.25c0%2C2.92-1.57%2C4.71-4.09%2C4.71s-4.24-1.83-4.24-4.79V5.27h1.79v19.83c0%2C2.04.77%2C3.07%2C2.34%2C3.07s2.41-.99%2C2.41-3.03V5.27h1.79v19.98Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M177.34%2C6.58c-1.61%2C0-3.13.63-4.28%2C1.78-1.15%2C1.15-1.79%2C2.68-1.79%2C4.31s.63%2C3.14%2C1.77%2C4.29c1.15%2C1.15%2C2.68%2C1.78%2C4.32%2C1.78s3.16-.63%2C4.31-1.79c1.14-1.14%2C1.78-2.67%2C1.78-4.28s-.63-3.15-1.78-4.3c-1.15-1.15-2.69-1.79-4.33-1.79ZM182.79%2C18.1c-1.46%2C1.45-3.38%2C2.25-5.43%2C2.25s-3.99-.8-5.45-2.26c-1.46-1.45-2.26-3.38-2.26-5.42s.8-3.98%2C2.25-5.43c1.45-1.45%2C3.38-2.25%2C5.43-2.25s4%2C.8%2C5.46%2C2.25c1.45%2C1.45%2C2.25%2C3.38%2C2.25%2C5.43s-.8%2C3.98-2.25%2C5.43Z%22/%3E%0A%20%20%3Cline%20class%3D%22st0%22%20y1%3D%22.9%22%20x2%3D%22209.47%22%20y2%3D%22.9%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M3.23%2C29.63V6.99H.35v-1.72h7.49v1.72h-2.85v22.64h-1.75Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M16.86%2C29.63V13.12h-4.49v16.51h-1.79V13.12h-.91l-.66-1.79h1.57v-6.06h1.79v6.06h4.49v-6.06h1.79v24.36h-1.79Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M22.68%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M39.7%2C4.86l1.61.03c5.41.04%2C9.64%2C4.01%2C9.64%2C9.02s-3.8%2C8.59-9.46%2C9.16v6.19h-1.79V4.86ZM49.19%2C13.88c0-4.01-3.07-6.97-7.71-7.44v14.95c4.46-.3%2C7.71-3.46%2C7.71-7.51Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M54.52%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M66.56%2C29.63V6.99h-2.89v-1.72h7.49v1.72h-2.85v22.64h-1.75Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M73.95%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M93.44%2C29.45l-8.7-7.08v6.9h-1.79V4.76h1.31c5.52%2C0%2C9.86%2C3.94%2C9.86%2C8.92%2C0%2C3.97-2.52%2C7.14-6.79%2C8.55l8.96%2C7.21h-2.85ZM92.37%2C13.79c0-4.04-3.07-7-7.63-7.44v14.71c4.57-.44%2C7.63-3.37%2C7.63-7.27Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M98.26%2C27.43h2.12c2.63%2C0%2C4.2-1.35%2C4.2-3.62%2C0-.62-.18-1.31-.62-2.23l-3.8-8.25c-1.1-2.34-1.2-2.74-1.2-3.8%2C0-2.92%2C1.94-4.64%2C5.26-4.64h1.28v1.75h-1.42c-2.04%2C0-3.32%2C1.06-3.32%2C2.74%2C0%2C.55.26%2C1.46.55%2C2.15l4.2%2C8.87c.66%2C1.32.91%2C2.3.91%2C3.36%2C0%2C3.32-2.45%2C5.48-6.21%2C5.48h-1.94v-1.83Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M114.34%2C6.8c-1.61%2C0-3.13.63-4.28%2C1.78-1.15%2C1.15-1.78%2C2.68-1.78%2C4.31s.63%2C3.14%2C1.77%2C4.29c1.15%2C1.15%2C2.68%2C1.78%2C4.32%2C1.78s3.16-.63%2C4.31-1.79c1.15-1.14%2C1.78-2.67%2C1.78-4.28s-.63-3.15-1.78-4.3c-1.15-1.15-2.69-1.79-4.33-1.79ZM119.79%2C18.32c-1.45%2C1.45-3.38%2C2.25-5.43%2C2.25s-3.99-.8-5.45-2.26c-1.46-1.46-2.26-3.38-2.26-5.42s.8-3.98%2C2.25-5.43c1.46-1.46%2C3.39-2.26%2C5.43-2.26s4%2C.8%2C5.46%2C2.26c1.45%2C1.45%2C2.25%2C3.38%2C2.25%2C5.43s-.8%2C3.98-2.25%2C5.43Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M131.21%2C29.41V10.86l-5.11-3.1v21.66h-1.83V4.65l6.94%2C4.17v-3.76h1.72v24.36h-1.72Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M141.32%2C17.39c0-6.68%2C5.22-11.91%2C12.09-12.13v1.75c-6.1.47-10.26%2C4.67-10.26%2C10.41%2C0%2C5.04%2C3.32%2C9.02%2C8.51%2C10.15V11.37h1.75v18.26c-7.53-.8-12.09-5.44-12.09-12.24Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M166.41%2C29.18l-8.3-6.71v6.8h-1.79V4.86h1.31c5.52%2C0%2C9.86%2C3.94%2C9.86%2C8.92%2C0%2C3.97-2.52%2C7.14-6.79%2C8.55l8.56%2C6.85h-2.85ZM165.75%2C13.88c0-4.04-3.07-7-7.63-7.44v14.71c4.56-.44%2C7.63-3.37%2C7.63-7.27Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M195.58%2C25.25c0%2C2.92-1.57%2C4.71-4.09%2C4.71s-4.24-1.83-4.24-4.79V5.27h1.79v19.83c0%2C2.04.77%2C3.07%2C2.34%2C3.07s2.41-.99%2C2.41-3.03V5.27h1.79v19.98Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M197.78%2C4.86l1.61.03c5.4.04%2C9.64%2C4.01%2C9.64%2C9.02s-3.8%2C8.59-9.46%2C9.16v6.19h-1.79V4.86ZM207.27%2C13.88c0-4.01-3.07-6.97-7.71-7.44v14.95c4.46-.3%2C7.71-3.46%2C7.71-7.51Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M177.34%2C6.58c-1.61%2C0-3.13.63-4.28%2C1.78-1.15%2C1.15-1.79%2C2.68-1.79%2C4.31s.63%2C3.14%2C1.77%2C4.29c1.15%2C1.15%2C2.68%2C1.78%2C4.32%2C1.78s3.16-.63%2C4.31-1.79c1.14-1.14%2C1.78-2.67%2C1.78-4.28s-.63-3.15-1.78-4.3c-1.15-1.15-2.69-1.79-4.33-1.79ZM182.79%2C18.1c-1.46%2C1.45-3.38%2C2.25-5.43%2C2.25s-3.99-.8-5.45-2.26c-1.46-1.45-2.26-3.38-2.26-5.42s.8-3.98%2C2.25-5.43c1.45-1.45%2C3.38-2.25%2C5.43-2.25s4%2C.8%2C5.46%2C2.25c1.45%2C1.45%2C2.25%2C3.38%2C2.25%2C5.43s-.8%2C3.98-2.25%2C5.43Z%22/%3E%0A%20%20%3Cline%20class%3D%22st1%22%20x1%3D%22.25%22%20y1%3D%221.02%22%20x2%3D%22209.71%22%20y2%3D%221.02%22/%3E%0A%3C/svg%3E" alt="The Peterson Group"></a>
+    <ul class="nav-links">
+      <li><a href="ServicesComp_v1.html">Services</a></li>
+      <li><a href="index.html#proof">Results</a></li>
+      <li><a href="AboutComp_v1.html">About</a></li>
+      <li><a href="index.html#commit">Contact</a></li>
+      <li class="keep"><a class="btn" href="SummitComp_v1.html">Book a Planning Summit</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="kicker">Services</div>
+    <h1>From diagnosis to installation in days... not months.</h1>
+    <p>Six offers. Three formats. Every engagement delivers installed systems, not advice.</p>
+  </div>
+</header>
+
+<section class="group">
+  <div class="wrap">
+    <div class="kicker">Format 01 ... Planning Summits</div>
+    <h2>Planning Summits</h2>
+    <p class="gdesc">Facilitated one-day sessions that produce the plan your business runs on: priorities, success metrics, accountability, and the discipline to deliver it. Your first AI workflows and automations are installed within days.</p>
+
+    <div class="offer">
+      <h3>Strategic Reset Planning Summit</h3>
+      <p class="tagline">A facilitated planning summit that aligns your leadership team on priorities, metrics, and ownership... and concurrently maps where AI and automation will amplify the work.</p>
+      <p>A facilitated one-day planning summit with your leadership and execution team. Together we lock the priorities that matter most, give each a measurable, time-bound definition of success, name the actions that drive it, and assign every priority, metric, and action to a person in the room. As the work of each function surfaces, we map where automation and AI execution will amplify output across your team.</p>
+      <div class="cols">
+        <div>
+          <h4>The Strategic Blueprint ... within 24 hours</h4>
+          <ol>
+            <li>Top priorities for the period, locked and sequenced</li>
+            <li>Success metrics for each... measurable and time-bound</li>
+            <li>Action items, with role and individual ownership assigned in the room</li>
+            <li>90-day execution plan</li>
+            <li>KPI scoreboard (5 to 8 metrics) with defined data feeds your team owns</li>
+            <li>&ldquo;Stop Doing&rdquo; list</li>
+            <li>Clear recommendation: execute independently or proceed into the Sprint</li>
+          </ol>
+        </div>
+        <div>
+          <h4>The AI Adoption Blueprint ... two return sessions</h4>
+          <ol>
+            <li>The AI and automation opportunities that surfaced during your summit</li>
+            <li>The top 2 to 3 standard installations from TPG&rsquo;s catalog of proven workflows, installed hands-on</li>
+            <li>Recommended tools and platforms for each</li>
+            <li>Team adoption support</li>
+            <li>Remaining opportunities... the bridge to the Sprint</li>
+          </ol>
+        </div>
+      </div>
+      <p class="cta-row"><a class="btn" href="SummitComp_v1.html">See the Summit</a></p>
+    </div>
+
+    <div class="offer">
+      <h3>Mid-Year Reset Summit</h3>
+      <p class="tagline">Recalibrate the second half before momentum sets your year... the seasonal entry point into the Reset Series.</p>
+      <p>A facilitated one-day session that assesses exactly where the business stands at mid-year, function by function, and sharpens priorities, metrics, and ownership for the second half. The Second-Half Plan is delivered in writing within 24 hours... position assessment, second-half priorities locked and sequenced, success metrics, action items with ownership assigned in the room, a 90-day second-half execution plan and KPI scoreboard, and a &ldquo;Stop Doing&rdquo; list. One 90-minute installation session within one week installs the top 2 to 3 standard AI workflows that surfaced.</p>
+      <p>Best run in early July... giving the recalibrated plan a full six months to compound before year-end.</p>
+      <p class="cta-row"><a class="btn" href="#pricing-table">Book a Planning Summit</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="group band">
+  <div class="wrap">
+    <div class="kicker">Format 02 ... AI System Installations</div>
+    <h2>AI System Installations</h2>
+    <p class="gdesc">Standardized AI workflows and automations, installed by our own AI architecture and engineering team: lead follow-up, pipeline, proposals, reporting, and collections.</p>
+
+    <h4 style="font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-ink);font-weight:bold">What our engineering team installs ... two lanes govern everything we build</h4>
+    <div class="lane-grid">
+      <div class="lane">
+        <h4>Lane 1 ... Standard AI Installations</h4>
+        <p>Proven workflows from TPG&rsquo;s standard catalog: lead follow-up, pipeline, proposals, reporting, and collections. They run on the mainstream platforms your team already uses, with no custom code, and they are included in each offer by count.</p>
+      </div>
+      <div class="lane custom">
+        <h4>Lane 2 ... Custom Development &amp; Integrations</h4>
+        <p>Live integrated dashboards, CRM builds, custom mini apps, API integrations, and software platforms. Always scoped independently, in writing, after a paid Systems &amp; Data Audit.</p>
+      </div>
+    </div>
+    <p class="gdesc">Each engagement installs the specific standard components with the greatest quantified upside, scoped in writing before we build.</p>
+
+    <div class="offer">
+      <h3>Revenue Operations Sprint</h3>
+      <p class="tagline">TPG&rsquo;s single largest engagement, and the fastest path from diagnosis to a fully installed operating system... backed by a real engineering team, not facilitation alone.</p>
+      <p>Over 10 business days, Alan works with the founder and leadership team to produce the company&rsquo;s vision and Annual Plan... top priorities, success metrics, and accountability action plans... while TPG&rsquo;s AI architecture and engineering team installs the standard AI solutions, selected together, that most immediately impact revenue and operations.</p>
+      <h4>What you leave with</h4>
+      <ol>
+        <li>Profit Uplift Blueprint + Model... a quantified model translating improvements into dollars, in low, base, and aggressive scenarios</li>
+        <li>Execution Cadence OS... a self-facilitated meeting system: daily, weekly, monthly, and quarterly agendas, scoreboard, roles, and follow-up discipline</li>
+        <li>Installed System Assets + Scoreboard... templates, scripts, one-page standard operating checklists, and 5 to 8 standard installations live. The CEO&rsquo;s KPI scoreboard with defined data feeds your team owns... their central nervous system</li>
+        <li>AI Fluency Accelerator... role-based AI workflows and hands-on training built into daily operations. Not AI training... installed efficiency and adoption</li>
+        <li>TPG AI Architecture &amp; Engineering Team... every automation, agent, and workflow above is built and installed by TPG&rsquo;s own engineering function. Custom opportunities are captured in a Custom Automation Roadmap and scoped independently</li>
+      </ol>
+      <p>This is not a solo facilitator promising to figure it out later. It is a working engineering function standing behind TPG&rsquo;s flagship engagement.</p>
+      <p class="cta-row"><a class="btn" href="#pricing-table">Schedule a Sprint Conversation</a></p>
+    </div>
+
+    <div class="offer">
+      <h3>Fractional Chief Revenue Architect</h3>
+      <p class="tagline">A named role, not a vague retainer... for clients who want continued traction after the Sprint.</p>
+      <p>90 days of fractional revenue leadership inside your team, backed by ongoing TPG AI architecture and engineering support: weekly cadence, scoreboard enforcement, pipeline discipline, continued standard installations from TPG&rsquo;s catalog, and operational optimization. The same team is available to architect customized AI automations, workflows, and software platforms... each scoped independently.</p>
+      <p>It is the revenue-side Integrator in the original Harvard Business Review sense: aligning sales, marketing, and operations so they pull in one direction... without the cost or risk of the full-time hire.</p>
+      <p>The retention model is built on empowerment, not dependency. We train your team to become the internal experts. That is why clients stay. We accept a limited number of Fractional engagements at a time.</p>
+      <p class="cta-row"><a class="btn" href="#pricing-table">Inquire About Availability</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="group">
+  <div class="wrap">
+    <div class="kicker">Format 03 ... Retreats &amp; Leadership Coaching</div>
+    <h2>Retreats &amp; Leadership Coaching</h2>
+    <p class="gdesc">Strategy retreats at sea and ongoing coaching for the people carrying the company, not just its systems.</p>
+
+    <div class="offer">
+      <h3>The Strategy Blueprint at Sea</h3>
+      <p class="tagline">A working strategic planning retreat for founders, CEOs, and executives. Aboard Cyrolia... Alan Peterson&rsquo;s bluewater cruising sailboat... in French Polynesia. 7 nights, limited to 5 guests.</p>
+      <p>This is a working strategic planning retreat, not a vacation. Your vision, your year, your Annual Plan, and your top business priority are surfaced and named during the week... defined with success metrics and immediate action items... through facilitation with Alan Peterson and a small, non-competing cohort. The work is supported by TPG&rsquo;s backend AI team and facilitated Starlink Zoom sessions with your leadership team at home, so a comprehensive plan is ready to present upon your return.</p>
+      <p><b>What you leave with:</b> a written Strategy Blueprint with quantified upside, a sequenced 90-day execution plan, 3 standard AI installations set up for your business, and a peer cohort of vetted founders you can call after.</p>
+      <p><b>Format:</b> 7 nights aboard Cyrolia in the Society Islands, French Polynesia. Mornings are 3 to 4 hours of facilitated working sessions; afternoons and evenings on the water and ashore. A 50% deposit reserves your berth.</p>
+      <div class="pricing"><b>Pricing.</b> Founder&rsquo;s Cohort, $7,250 per person, limited to the first 2 confirmed registrations. Core Retreat, $8,500. Executive Retreat, $14,500, adding 8 weeks of 1:1 coaching post-retreat and priority stateroom. Customized private charters... a founder plus their leadership team, the entire vessel... are scoped after a discovery call.</div>
+      <p class="cta-row"><a class="btn" href="#">Reserve a Berth</a></p>
+    </div>
+
+    <div class="offer">
+      <h3>The Lighthouse Leadership OS</h3>
+      <p class="tagline">For entrepreneurs to Fortune-level leadership teams. Coaching and facilitation from an operator who has built and led, not just studied.</p>
+      <p>A direct alternative to EOS, Petra Coach, and Bloom Growth. It delivers the same foundation those programs sell... a clear plan, aligned leadership, accountability, and a disciplined meeting rhythm... and adds what none of them offer: working AI systems built and installed by TPG&rsquo;s own engineering team, and coaching for the leaders themselves, not just the framework. No franchise journey. No per-seat software subscription. Clients stay because it works.</p>
+      <p><b>Engagement modes:</b> 1:1 founder/CEO coaching, leadership team facilitation, team-wide engagement, and board &amp; advisory facilitation.</p>
+      <p><b>Operating rhythm... customized to your team:</b> annual, semi-annual, quarterly, or monthly cadences, combinable as the company grows. Delivered in person, aboard Cyrolia, or by video. Every rhythm includes the plan and the discipline, at least one standard AI installation from TPG&rsquo;s catalog each quarter as part of the retainer, and tooling you own outright... no platform lock-in.</p>
+      <div class="pricing"><b>Pricing.</b> $4,750 for a single facilitated planning day... the same standard rate as the Reset Summits. Monthly and quarterly facilitation retainers are customized to each client, scoped after a discovery call.</div>
+      <p class="cta-row"><a class="btn" href="#">Book a Discovery Call</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="group band" id="pricing-table">
+  <div class="wrap">
+    <div class="kicker">Compare</div>
+    <h2>Four ways into the operating system.</h2>
+    <div class="ptable-wrap" style="margin-top:40px">
+    <table class="ptable">
+      <tr><th></th><th>Strategic Reset Planning Summit</th><th>Mid-Year Reset Summit</th><th>Revenue Operations Sprint</th><th>Fractional Chief Revenue Architect</th></tr>
+      <tr><td>Duration</td><td>One day + two 90-minute installation sessions</td><td>One day + one 90-minute installation session</td><td>10 business days</td><td>90 days</td></tr>
+      <tr><td>Investment</td><td>$4,750</td><td>$4,750</td><td>$25,000 ($35,000 to $50,000+ for complex organizations)</td><td>Monthly retainer, scoped after the Summit</td></tr>
+      <tr><td>You leave with</td><td>Strategic Blueprint + AI Adoption Blueprint, 2 to 3 standard installations</td><td>Second-Half Plan + AI Adoption Blueprint, 2 to 3 standard installations</td><td>Annual Plan, Execution Cadence OS, 5 to 8 standard installations, KPI scoreboard</td><td>Continued traction, discipline, and standard installations</td></tr>
+      <tr><td>Best for</td><td>Deciding what to fix first</td><td>Recalibrating the second half before it sets</td><td>Installing the full operating system</td><td>Sustaining and scaling after the Sprint</td></tr>
+    </table>
+    </div>
+    <p class="table-note">Your Summit investment is credited in full toward a Sprint booked within 14 days.</p>
+  </div>
+</section>
+
+<section class="group">
+  <div class="wrap">
+    <div class="start-box">
+      <div class="kicker" style="color:#BFE6F7">What role are you trying to hire? We install the system that role would build.</div>
+      <h2>Start with the Strategic Reset Planning Summit.</h2>
+      <p>If there is clear upside and urgency, proceed directly into the Revenue Operations Sprint.</p>
+      <a class="btn big" href="SummitComp_v1.html">Book a Planning Summit</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <img src="data:image/svg+xml;utf8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20version%3D%221.1%22%20viewBox%3D%220%200%20209.71%2029.96%22%3E%0A%20%20%3C%21--%20Generator%3A%20Adobe%20Illustrator%2030.2.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%202.1.1%20Build%201%29%20%20--%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20.st0%20%7B%0A%20%20%20%20%20%20%20%20stroke%3A%20%23FFFFFF%3B%0A%20%20%20%20%20%20%20%20stroke-width%3A%201.8px%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20.st0%2C%20.st1%20%7B%0A%20%20%20%20%20%20%20%20fill%3A%20none%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20.st1%20%7B%0A%20%20%20%20%20%20%20%20stroke%3A%20%23FFFFFF%3B%0A%20%20%20%20%20%20%20%20stroke-width%3A%201.24px%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20.st2%20%7B%0A%20%20%20%20%20%20%20%20fill%3A%20%23FFFFFF%3B%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%3C/style%3E%0A%20%20%3C/defs%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M3.23%2C29.63V6.99H.35v-1.72h7.49v1.72h-2.85v22.64h-1.75Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M16.86%2C29.63V13.12h-4.49v16.51h-1.79V13.12h-.91l-.66-1.79h1.57v-6.06h1.79v6.06h4.49v-6.06h1.79v24.36h-1.79Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M22.68%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M39.7%2C4.86l1.61.03c5.41.04%2C9.64%2C4.01%2C9.64%2C9.02s-3.8%2C8.59-9.46%2C9.16v6.19h-1.79V4.86ZM49.19%2C13.88c0-4.01-3.07-6.97-7.71-7.44v14.95c4.46-.3%2C7.71-3.46%2C7.71-7.51Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M54.52%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M66.56%2C29.63V6.99h-2.89v-1.72h7.49v1.72h-2.85v22.64h-1.75Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M73.95%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M93.44%2C29.45l-8.7-7.08v6.9h-1.79V4.76h1.31c5.52%2C0%2C9.86%2C3.94%2C9.86%2C8.92%2C0%2C3.97-2.52%2C7.14-6.79%2C8.55l8.96%2C7.21h-2.85ZM92.37%2C13.79c0-4.04-3.07-7-7.63-7.44v14.71c4.57-.44%2C7.63-3.37%2C7.63-7.27Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M98.26%2C27.43h2.12c2.63%2C0%2C4.2-1.35%2C4.2-3.62%2C0-.62-.18-1.31-.62-2.23l-3.8-8.25c-1.1-2.34-1.2-2.74-1.2-3.8%2C0-2.92%2C1.94-4.64%2C5.26-4.64h1.28v1.75h-1.42c-2.04%2C0-3.32%2C1.06-3.32%2C2.74%2C0%2C.55.26%2C1.46.55%2C2.15l4.2%2C8.87c.66%2C1.32.91%2C2.3.91%2C3.36%2C0%2C3.32-2.45%2C5.48-6.21%2C5.48h-1.94v-1.83Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M114.34%2C6.8c-1.61%2C0-3.13.63-4.28%2C1.78-1.15%2C1.15-1.78%2C2.68-1.78%2C4.31s.63%2C3.14%2C1.77%2C4.29c1.15%2C1.15%2C2.68%2C1.78%2C4.32%2C1.78s3.16-.63%2C4.31-1.79c1.15-1.14%2C1.78-2.67%2C1.78-4.28s-.63-3.15-1.78-4.3c-1.15-1.15-2.69-1.79-4.33-1.79ZM119.79%2C18.32c-1.45%2C1.45-3.38%2C2.25-5.43%2C2.25s-3.99-.8-5.45-2.26c-1.46-1.46-2.26-3.38-2.26-5.42s.8-3.98%2C2.25-5.43c1.46-1.46%2C3.39-2.26%2C5.43-2.26s4%2C.8%2C5.46%2C2.26c1.45%2C1.45%2C2.25%2C3.38%2C2.25%2C5.43s-.8%2C3.98-2.25%2C5.43Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M131.21%2C29.41V10.86l-5.11-3.1v21.66h-1.83V4.65l6.94%2C4.17v-3.76h1.72v24.36h-1.72Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M141.32%2C17.39c0-6.68%2C5.22-11.91%2C12.09-12.13v1.75c-6.1.47-10.26%2C4.67-10.26%2C10.41%2C0%2C5.04%2C3.32%2C9.02%2C8.51%2C10.15V11.37h1.75v18.26c-7.53-.8-12.09-5.44-12.09-12.24Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M166.41%2C29.18l-8.3-6.71v6.8h-1.79V4.86h1.31c5.52%2C0%2C9.86%2C3.94%2C9.86%2C8.92%2C0%2C3.97-2.52%2C7.14-6.79%2C8.55l8.56%2C6.85h-2.85ZM165.75%2C13.88c0-4.04-3.07-7-7.63-7.44v14.71c4.56-.44%2C7.63-3.37%2C7.63-7.27Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M195.58%2C25.25c0%2C2.92-1.57%2C4.71-4.09%2C4.71s-4.24-1.83-4.24-4.79V5.27h1.79v19.83c0%2C2.04.77%2C3.07%2C2.34%2C3.07s2.41-.99%2C2.41-3.03V5.27h1.79v19.98Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M177.34%2C6.58c-1.61%2C0-3.13.63-4.28%2C1.78-1.15%2C1.15-1.79%2C2.68-1.79%2C4.31s.63%2C3.14%2C1.77%2C4.29c1.15%2C1.15%2C2.68%2C1.78%2C4.32%2C1.78s3.16-.63%2C4.31-1.79c1.14-1.14%2C1.78-2.67%2C1.78-4.28s-.63-3.15-1.78-4.3c-1.15-1.15-2.69-1.79-4.33-1.79ZM182.79%2C18.1c-1.46%2C1.45-3.38%2C2.25-5.43%2C2.25s-3.99-.8-5.45-2.26c-1.46-1.45-2.26-3.38-2.26-5.42s.8-3.98%2C2.25-5.43c1.45-1.45%2C3.38-2.25%2C5.43-2.25s4%2C.8%2C5.46%2C2.25c1.45%2C1.45%2C2.25%2C3.38%2C2.25%2C5.43s-.8%2C3.98-2.25%2C5.43Z%22/%3E%0A%20%20%3Cline%20class%3D%22st0%22%20y1%3D%22.9%22%20x2%3D%22209.47%22%20y2%3D%22.9%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M3.23%2C29.63V6.99H.35v-1.72h7.49v1.72h-2.85v22.64h-1.75Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M16.86%2C29.63V13.12h-4.49v16.51h-1.79V13.12h-.91l-.66-1.79h1.57v-6.06h1.79v6.06h4.49v-6.06h1.79v24.36h-1.79Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M22.68%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M39.7%2C4.86l1.61.03c5.41.04%2C9.64%2C4.01%2C9.64%2C9.02s-3.8%2C8.59-9.46%2C9.16v6.19h-1.79V4.86ZM49.19%2C13.88c0-4.01-3.07-6.97-7.71-7.44v14.95c4.46-.3%2C7.71-3.46%2C7.71-7.51Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M54.52%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M66.56%2C29.63V6.99h-2.89v-1.72h7.49v1.72h-2.85v22.64h-1.75Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M73.95%2C29.63V13.05h-.95l-.66-1.75h1.61v-6.03h6.25v1.75h-4.49v4.27h4.27l.66%2C1.75h-4.93v14.79h4.49v1.79h-6.25Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M93.44%2C29.45l-8.7-7.08v6.9h-1.79V4.76h1.31c5.52%2C0%2C9.86%2C3.94%2C9.86%2C8.92%2C0%2C3.97-2.52%2C7.14-6.79%2C8.55l8.96%2C7.21h-2.85ZM92.37%2C13.79c0-4.04-3.07-7-7.63-7.44v14.71c4.57-.44%2C7.63-3.37%2C7.63-7.27Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M98.26%2C27.43h2.12c2.63%2C0%2C4.2-1.35%2C4.2-3.62%2C0-.62-.18-1.31-.62-2.23l-3.8-8.25c-1.1-2.34-1.2-2.74-1.2-3.8%2C0-2.92%2C1.94-4.64%2C5.26-4.64h1.28v1.75h-1.42c-2.04%2C0-3.32%2C1.06-3.32%2C2.74%2C0%2C.55.26%2C1.46.55%2C2.15l4.2%2C8.87c.66%2C1.32.91%2C2.3.91%2C3.36%2C0%2C3.32-2.45%2C5.48-6.21%2C5.48h-1.94v-1.83Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M114.34%2C6.8c-1.61%2C0-3.13.63-4.28%2C1.78-1.15%2C1.15-1.78%2C2.68-1.78%2C4.31s.63%2C3.14%2C1.77%2C4.29c1.15%2C1.15%2C2.68%2C1.78%2C4.32%2C1.78s3.16-.63%2C4.31-1.79c1.15-1.14%2C1.78-2.67%2C1.78-4.28s-.63-3.15-1.78-4.3c-1.15-1.15-2.69-1.79-4.33-1.79ZM119.79%2C18.32c-1.45%2C1.45-3.38%2C2.25-5.43%2C2.25s-3.99-.8-5.45-2.26c-1.46-1.46-2.26-3.38-2.26-5.42s.8-3.98%2C2.25-5.43c1.46-1.46%2C3.39-2.26%2C5.43-2.26s4%2C.8%2C5.46%2C2.26c1.45%2C1.45%2C2.25%2C3.38%2C2.25%2C5.43s-.8%2C3.98-2.25%2C5.43Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M131.21%2C29.41V10.86l-5.11-3.1v21.66h-1.83V4.65l6.94%2C4.17v-3.76h1.72v24.36h-1.72Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M141.32%2C17.39c0-6.68%2C5.22-11.91%2C12.09-12.13v1.75c-6.1.47-10.26%2C4.67-10.26%2C10.41%2C0%2C5.04%2C3.32%2C9.02%2C8.51%2C10.15V11.37h1.75v18.26c-7.53-.8-12.09-5.44-12.09-12.24Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M166.41%2C29.18l-8.3-6.71v6.8h-1.79V4.86h1.31c5.52%2C0%2C9.86%2C3.94%2C9.86%2C8.92%2C0%2C3.97-2.52%2C7.14-6.79%2C8.55l8.56%2C6.85h-2.85ZM165.75%2C13.88c0-4.04-3.07-7-7.63-7.44v14.71c4.56-.44%2C7.63-3.37%2C7.63-7.27Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M195.58%2C25.25c0%2C2.92-1.57%2C4.71-4.09%2C4.71s-4.24-1.83-4.24-4.79V5.27h1.79v19.83c0%2C2.04.77%2C3.07%2C2.34%2C3.07s2.41-.99%2C2.41-3.03V5.27h1.79v19.98Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M197.78%2C4.86l1.61.03c5.4.04%2C9.64%2C4.01%2C9.64%2C9.02s-3.8%2C8.59-9.46%2C9.16v6.19h-1.79V4.86ZM207.27%2C13.88c0-4.01-3.07-6.97-7.71-7.44v14.95c4.46-.3%2C7.71-3.46%2C7.71-7.51Z%22/%3E%0A%20%20%3Cpath%20class%3D%22st2%22%20d%3D%22M177.34%2C6.58c-1.61%2C0-3.13.63-4.28%2C1.78-1.15%2C1.15-1.79%2C2.68-1.79%2C4.31s.63%2C3.14%2C1.77%2C4.29c1.15%2C1.15%2C2.68%2C1.78%2C4.32%2C1.78s3.16-.63%2C4.31-1.79c1.14-1.14%2C1.78-2.67%2C1.78-4.28s-.63-3.15-1.78-4.3c-1.15-1.15-2.69-1.79-4.33-1.79ZM182.79%2C18.1c-1.46%2C1.45-3.38%2C2.25-5.43%2C2.25s-3.99-.8-5.45-2.26c-1.46-1.45-2.26-3.38-2.26-5.42s.8-3.98%2C2.25-5.43c1.45-1.45%2C3.38-2.25%2C5.43-2.25s4%2C.8%2C5.46%2C2.25c1.45%2C1.45%2C2.25%2C3.38%2C2.25%2C5.43s-.8%2C3.98-2.25%2C5.43Z%22/%3E%0A%20%20%3Cline%20class%3D%22st1%22%20x1%3D%22.25%22%20y1%3D%221.02%22%20x2%3D%22209.71%22%20y2%3D%221.02%22/%3E%0A%3C/svg%3E" alt="The Peterson Group">
+      <ul class="foot-links">
+        <li><a href="ServicesComp_v1.html">Services</a></li>
+        <li><a href="AboutComp_v1.html">About</a></li>
+        <li><a href="index.html#proof">Results</a></li>
+        <li><a href="index.html#commit">Contact</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+    <p class="foot-tag">Blueprints, not decks. Installed systems, not advice.</p>
+    <p class="foot-legal">&copy; 2026 The Peterson Group. All rights reserved. &middot; Privacy &middot; Terms</p>
+  </div>
+</footer>
+
+</body>
+</html>
