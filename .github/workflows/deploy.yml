@@ -21,22 +21,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build and export
-        run: npm run build
+      # The live site is the static four-page comp set (repo-root HTML files),
+      # not the Next.js build. To switch back to the Next.js site, restore the
+      # npm ci / npm run build steps and upload ./out instead.
+      - name: Assemble comp set
+        run: |
+          mkdir site
+          cp index.html ServicesComp_v1.html SummitComp_v1.html AboutComp_v1.html site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./site
 
   deploy:
     needs: build
